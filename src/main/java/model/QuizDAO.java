@@ -16,6 +16,7 @@ public class QuizDAO {
         try (BufferedReader reader = Files.newBufferedReader(Path.of(quizRef))) {
             String line = "";
             while ((line = reader.readLine()) != null) {
+
                 String[] strings = line.split(",");
                 if (strings.length == 2)
                 map.put(strings[0], strings[1]);
