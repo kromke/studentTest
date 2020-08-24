@@ -1,32 +1,45 @@
 package model;
 
-import java.io.BufferedReader;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvValidationException;
+
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuizDAO {
 
-    private Map<String, String> map = new HashMap<>();
+    private String csvPathIn;
+    private String csvPathOut;
 
-    public QuizDAO(String quizRef) {
-
-        try (BufferedReader reader = Files.newBufferedReader(Path.of(quizRef))) {
-            String line = "";
-            while ((line = reader.readLine()) != null) {
-
-                String[] strings = line.split(",");
-                if (strings.length == 2)
-                map.put(strings[0], strings[1]);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public QuizDAO (String csvPathIn, String csvPathOut) {
+        this.csvPathIn = csvPathIn;
+        this.csvPathOut = csvPathOut;
     }
 
-    public int numberOfQuestions() {
-        return map.size();
+    public List<QuestionEntity> getQuestions() {
+        List<QuestionEntity> list = new ArrayList<>();
+
+        try(CSVReader reader =  new CSVReader(new FileReader(csvPathIn))) {
+            String[] data = null;
+            while ((data = reader.readNext()) != null) {
+                list.add(new QuestionEntity(data[0], data[1]));
+            }
+        }catch (IOException | CsvValidationException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public void writeNameLastName (String name, String lastName) {
+        try (CSVWriter writer = new CSVWriter(new FileWriter(csvPathOut, true))) {
+
+            writer.writeNext(new String[] {"user", name, lastName});
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

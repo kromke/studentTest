@@ -8,6 +8,6 @@ public class QuizDAOTest {
     @Test
     public void quizConstructorTest(){
         QuizDAO quizDAO = new QuizDAO("src/main/Data/quiz.csv");
-        Assert.assertTrue(quizDAO.numberOfQuestions() > 0);
+        Assert.assertTrue(quizDAO.getQuestions().size() > 0);
     }
 }
