@@ -11,4 +11,5 @@ public class Service {
     private List<QuestionEntity> list;
 
     private int questionCounter;
+
 }
