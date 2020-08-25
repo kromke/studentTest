@@ -8,40 +8,31 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class QuizDAOImpl implements QuizDAO{
 
-    private String csvPathIn;
-    private String csvPathOut;
 
-    public QuizDAOImpl(String csvPathIn, String csvPathOut) {
+    private String csvPathIn;
+
+    public QuizDAOImpl(String csvPathIn) {
         this.csvPathIn = csvPathIn;
-        this.csvPathOut = csvPathOut;
     }
 
-    public List<QuestionEntity> getQuestions() {
-        List<QuestionEntity> list = new ArrayList<>();
+    public Map<String, String> getQuestions() {
+        Map<String, String> map = new HashMap<>();
 
         try(CSVReader reader =  new CSVReader(new FileReader(csvPathIn))) {
-            String[] data = null;
+            String[] data;
             while ((data = reader.readNext()) != null) {
-                list.add(new QuestionEntity(data[0], data[1]));
+                map.put(data[0], data[1]);
             }
         }catch (IOException | CsvValidationException e) {
             e.printStackTrace();
         }
-        return list;
+        return map;
     }
-
-    public void writeNameLastName (String name, String lastName) {
-        try (CSVWriter writer = new CSVWriter(new FileWriter(csvPathOut, true))) {
-
-            writer.writeNext(new String[] {"user", name, lastName});
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 
 }

@@ -1,15 +1,9 @@
 package service;
 
-import model.QuestionEntity;
-import model.QuizDAO;
+import java.util.Map;
 
-import java.util.List;
+public interface Service {
 
-public class Service {
 
-    private QuizDAO quizDAO;
-    private List<QuestionEntity> list;
-
-    private int questionCounter;
-
+    String testing(String name, String lastName, Map<String, String> quiz, Map<String, String> answers);
 }

@@ -1,10 +1,10 @@
 package model;
 
-import java.util.List;
+import java.util.Map;
 
 public interface QuizDAO {
 
-    List<QuestionEntity> getQuestions();
 
-    void writeNameLastName (String name, String lastName);
+    Map<String, String> getQuestions();
+
 }

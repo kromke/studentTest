@@ -1,11 +1,11 @@
 package facade;
 
-import model.QuestionEntity;
-import model.QuizDAO;
+import java.util.Map;
 
-import java.util.List;
-
-public class Facade {
+public interface Facade {
 
 
+    Map<String, String> getQuiz();
+
+    String getResults();
 }

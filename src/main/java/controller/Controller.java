@@ -2,8 +2,11 @@ package controller;
 
 public interface Controller {
 
+
     public void authentification();
 
-    public void getQuiz();
+    public void testing();
+
+    public void testResults();
 
 }
