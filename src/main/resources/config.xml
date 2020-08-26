@@ -4,6 +4,19 @@
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <bean id="quizDAOImpl" class="App.model.QuizDAOImpl">
+        <constructor-arg value="src/main/resources/quiz.csv"/>
+    </bean>
 
+    <bean id="TestServiceImpl" class="App.service.TestServiceImpl"/>
+
+    <bean id="facadeImpl" class="App.facade.FacadeImpl">
+        <constructor-arg name="service" ref="TestServiceImpl"/>
+        <constructor-arg name="quizDAO" ref="quizDAOImpl"/>
+    </bean>
+
+    <bean id="testControllerImpl" class="App.controller.TestControllerImpl">
+        <constructor-arg ref="facadeImpl"/>
+    </bean>
 
 </beans>

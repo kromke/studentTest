@@ -1,14 +1,13 @@
-package service;
+package App.service;
 
-import java.util.List;
 import java.util.Map;
 
-public class ServiceImpl implements Service{
+public class TestServiceImpl implements TestService {
 
 
     @Override
-    public String testing(String name, String lastName, Map<String, String> quiz, Map<String, String> answers) {
-        StringBuilder stringBuilder = new StringBuilder("Результаты тестирования " + name + " " + lastName + ":\n");
+    public String getTestResults(Map<String, String> quiz, Map<String, String> answers) {
+        StringBuilder stringBuilder = new StringBuilder();
         int counter = 0;
         for (String question : quiz.keySet()) {
             String answer = answers.get(question);
