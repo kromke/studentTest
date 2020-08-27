@@ -15,5 +15,6 @@ public class App {
 
         testController.getNameOfTestSubject();
         testController.testing();
+        context.close();
     }
 }

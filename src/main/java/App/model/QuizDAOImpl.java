@@ -3,8 +3,10 @@ package App.model;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +22,8 @@ public class QuizDAOImpl implements QuizDAO{
     public Map<String, String> getQuiz() {
         Map<String, String> map = new HashMap<>();
 
-        try(CSVReader reader =  new CSVReader(new FileReader(csvPathIn))) {
+        try(CSVReader reader =  new CSVReader
+                (new InputStreamReader(new FileInputStream(csvPathIn), StandardCharsets.UTF_8))) {
             String[] data;
             while ((data = reader.readNext()) != null) {
                 map.put(data[0], data[1]);

@@ -11,24 +11,31 @@ import java.util.Map;
 public class TestControllerImpl implements TestController {
 
 
-    private String name;
+    private String nameAndLastName;
     private Map<String, String> answers;
     private Map<String, String> quiz;
+    private BufferedReader reader;
+
 
     private FacadeModelServiceController facadeServiceController;
 
     public TestControllerImpl(FacadeModelServiceController facadeServiceController) {
         this.facadeServiceController = facadeServiceController;
+        reader = new BufferedReader(new InputStreamReader(System.in));
+    }
+
+    public String getNameAndLastName() {
+        return nameAndLastName;
     }
 
     @Override
     public void getNameOfTestSubject() {
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
+        try {
             System.out.println("Введите имя: ");
-            name = reader.readLine();
+            nameAndLastName = reader.readLine();
             System.out.println("Введите фамилию: ");
-            name +=  " " + reader.readLine();
+            nameAndLastName += " " + reader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,21 +47,26 @@ public class TestControllerImpl implements TestController {
         quiz = facadeServiceController.getQuiz();
         answers = new HashMap<>();
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+        try {
             for (String question : quiz.keySet()) {
                 System.out.println("\nВопрос: " + question);
                 System.out.print("Ответ: ");
-                String answer = reader.readLine();
-                answers.put(question, answer);
+
+                answers.put(question, reader.readLine());
                 System.out.println();
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        System.out.println("Результаты тестирования " + name + ":\n");
+        System.out.println("Результаты тестирования " + nameAndLastName + ":");
         printTestResults();
+
+        try {
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("Exception in close System.in");
+        }
     }
 
     private void printTestResults() {
