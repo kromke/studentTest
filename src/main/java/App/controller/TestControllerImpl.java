@@ -4,6 +4,7 @@ import App.facade.FacadeModelServiceController;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +25,16 @@ public class TestControllerImpl implements TestController {
         reader = new BufferedReader(new InputStreamReader(System.in));
     }
 
+    public void setInputStream(InputStream inputStream) {
+        try {
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        reader = new BufferedReader(new InputStreamReader(inputStream));
+    }
+
     public String getNameAndLastName() {
         return nameAndLastName;
     }
@@ -32,10 +43,19 @@ public class TestControllerImpl implements TestController {
     public void getNameOfTestSubject() {
 
         try {
+
             System.out.println("Введите имя: ");
             nameAndLastName = reader.readLine();
+
+            System.out.println(nameAndLastName);
+
             System.out.println("Введите фамилию: ");
             nameAndLastName += " " + reader.readLine();
+
+            System.out.println(nameAndLastName);
+
+            if (!nameAndLastName.matches("[a-zA-Zа-яА-Я]+\\s[a-zA-Zа-яА-Я\\-]+"))
+                nameAndLastName = null;
         } catch (IOException e) {
             e.printStackTrace();
         }
