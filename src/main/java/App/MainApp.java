@@ -4,7 +4,8 @@ import App.controller.TestController;
 import App.controller.TestControllerImpl;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class App {
+
+public class MainApp {
 
 
     public static void main(String[] args) {
