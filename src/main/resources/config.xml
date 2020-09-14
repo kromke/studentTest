@@ -4,11 +4,11 @@
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="quizDAOImpl" class="App.domain.model.QuizDAOImpl">
+    <bean id="quizDAOImpl" class="domain.model.QuizDAOImpl">
         <constructor-arg value="src/main/resources/quiz.csv"/>
     </bean>
 
-    <bean id="TestServiceImpl" class="App.domain.service.TestServiceImpl"/>
+    <bean id="TestServiceImpl" class="domain.service.TestServiceImpl"/>
 
     <bean id="facadeImpl" class="App.facade.FacadeImpl">
         <constructor-arg name="service" ref="TestServiceImpl"/>

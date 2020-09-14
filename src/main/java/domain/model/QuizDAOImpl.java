@@ -1,4 +1,4 @@
-package App.domain.model;
+package domain.model;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class QuizDAOImpl implements QuizDAO{
-
 
     private String csvPathIn;
 
@@ -33,5 +32,4 @@ public class QuizDAOImpl implements QuizDAO{
         }
         return map;
     }
-
 }

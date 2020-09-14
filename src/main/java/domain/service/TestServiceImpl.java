@@ -1,4 +1,4 @@
-package App.domain.service;
+package domain.service;
 
 import java.util.Map;
 
