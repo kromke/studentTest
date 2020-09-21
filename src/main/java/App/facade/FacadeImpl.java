@@ -1,6 +1,6 @@
 package App.facade;
 
-import domain.model.QuizDAO;
+import App.model.QuizDAO;
 import domain.service.TestService;
 
 import java.util.Map;

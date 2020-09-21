@@ -1,4 +1,4 @@
-package domain.model;
+package App.model;
 
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-package domain.model;
+package App.model;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
